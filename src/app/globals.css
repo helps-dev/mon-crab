@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cartoon fonts from the original site */
+@font-face {
+  font-family: "CCMaladroit";
+  font-display: swap;
+  src: url("/fonts/CCMaladroitW00-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Some Time Later";
+  font-display: swap;
+  src: url("/fonts/Some Time Later.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-sky font-body text-ink antialiased;
+    /* Soft cartoon sky gradient: cyan up top fading to a warm beach below */
+    background:
+      linear-gradient(180deg, #0affff 0%, #28d7ef 38%, #7ee8c8 72%, #ffe7a8 100%)
+        fixed;
+  }
+  ::selection {
+    @apply bg-candy/30 text-ink;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Comic-stroke heading: white fill, fat black outline */
+  .stroke-title {
+    @apply font-display uppercase leading-none text-white;
+    -webkit-text-stroke: 3px #0b0b0b;
+    paint-order: stroke fill;
+    text-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+  }
+  .stroke-title-yellow {
+    @apply stroke-title text-sunny;
+  }
+
+  /* Chunky cartoon button — red with thick black border, slight tilt */
+  .btn-cartoon {
+    @apply relative inline-flex -rotate-2 items-center justify-center gap-2
+      border-[5px] border-ink bg-candy px-7 py-3.5 font-display text-lg uppercase
+      tracking-wide text-white shadow-comic transition-transform duration-200
+      hover:rotate-0 hover:scale-105 active:translate-x-1 active:translate-y-1
+      active:shadow-comic-sm;
+  }
+  .btn-cartoon-blue {
+    @apply btn-cartoon bg-ocean;
+  }
+  .btn-cartoon-yellow {
+    @apply btn-cartoon bg-sunny text-ink;
+  }
+
+  /* White comic card with black border + hard shadow */
+  .card-comic {
+    @apply rounded-[1.75rem] border-[5px] border-ink bg-white p-6 text-ink
+      shadow-comic transition-transform duration-200;
+  }
+  .card-comic-blue {
+    @apply card-comic bg-[#eaf7ff];
+  }
+
+  .chip-comic {
+    @apply inline-flex -rotate-2 items-center gap-2 rounded-full border-[3px]
+      border-ink bg-white px-4 py-1.5 font-display text-sm uppercase text-ink
+      shadow-comic-sm;
+  }
+
+  .input-comic {
+    @apply w-full rounded-2xl border-[4px] border-ink bg-white px-3 py-2.5
+      font-body text-ink outline-none transition-shadow
+      placeholder:text-ink/40 focus:shadow-comic-sm;
+  }
+}
+
+@layer utilities {
+  .text-stroke-sm {
+    -webkit-text-stroke: 1.5px #0b0b0b;
+    paint-order: stroke fill;
+  }
+}
+
+/* Cartoon scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: #0affff;
+}
+::-webkit-scrollbar-thumb {
+  background: #eb1c24;
+  border: 3px solid #0b0b0b;
+  border-radius: 999px;
+}
